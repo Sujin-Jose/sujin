@@ -1,4 +1,4 @@
-package crud;
+package com.showroom;
 
 
 import java.sql.*;
@@ -12,7 +12,7 @@ import java.sql.*;
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con = DriverManager.getConnection(databaseUrl, username, password);
 			Statement st = con.createStatement();
-			String query = "insert into product(product_name,) values ('4 wheeler')";
+			String query = "insert into product(product_name,category_id,vendor_id,price,quantity,product_description) values ('Ford Mustang 1984','2','1','4000000','1','The 1984 Ford Mustang was part of the third generation of the Mustang, which Ford produced from 1979 to 1993. This generation represented a significant departure from the previous models, as it introduced a smaller and more fuel-efficient design.')";
 			st.executeUpdate(query);
 		}
 
@@ -21,12 +21,17 @@ import java.sql.*;
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection(databaseUrl,username,password);
 			Statement st=con.createStatement();
-			String query="select * from category";
+			String query="select * from product";
 			ResultSet rs=st.executeQuery(query);
 			while(rs.next()) {
-				String categoryName=rs.getString("category_name");
+				String productId=rs.getString("product_id");
+				String vendorId=rs.getString("vendor_id");
+				String price=rs.getString("price");
 				String categoryId=rs.getString("category_id");
-				System.out.println(categoryId +" "+ categoryName );
+				String quantity=rs.getString("quantity");
+				String productName=rs.getString("product_name");
+				String productDescription=rs.getString("product_description");
+				System.out.println(productId+" "+productName+" "+categoryId +" "+vendorId+" "+price+" "+quantity+" "+productDescription+ "\n");
 			}
 		}
 
@@ -35,7 +40,7 @@ import java.sql.*;
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection(databaseUrl,username,password);
 			Statement st=con.createStatement();
-			String query="update category set category_id=2 where category_id= 4 ";
+			String query="update product set product_Id=3 where product_Id=4 ";
 			st.executeUpdate(query);
 		}
 
@@ -44,7 +49,7 @@ import java.sql.*;
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			Connection con=DriverManager.getConnection(databaseUrl,username,password);
 			Statement st=con.createStatement();
-			String query="delete from category where category_id= 3  ";
+			String query="delete from product where category_id= 2  ";
 			st.executeUpdate(query);
 		}
 		public static void main(String[] args) throws ClassNotFoundException,SQLException{
@@ -78,4 +83,4 @@ import java.sql.*;
 
 	}
 
-}
+

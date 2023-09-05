@@ -1,8 +1,7 @@
-package crud;
-
+package com.showroom;
 import java.sql.*;
 import java.util.*;
-public class Customer {
+public class Category {
 	static String databaseUrl = "jdbc:mysql://localhost:3306/vehicleshowroom";
 	static String username = "root";
 	static String password = "12345";
@@ -11,7 +10,7 @@ public class Customer {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con = DriverManager.getConnection(databaseUrl, username, password);
 		Statement st = con.createStatement();
-		String query = "insert into customer(customer_name,email,phone_number) values ('Shafeek','shafeek@gmail',9876543),('Bravin','bravin@gmail',976431852),('Anon','anon@gmail',963852741),('Afrudheen','afrudheen@gmail',951847623),('Shankar','shankar@gmail',852741963),('Mariya','mariya@gmail',741963741),('Sharanya','sharanya@gmail',852963741)";
+		String query = "insert into category(category_name) values ('4 wheeler')";
 		st.executeUpdate(query);
 	}
 
@@ -20,14 +19,12 @@ public class Customer {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con=DriverManager.getConnection(databaseUrl,username,password);
 		Statement st=con.createStatement();
-		String query="select * from customer";
+		String query="select * from category";
 		ResultSet rs=st.executeQuery(query);
 		while(rs.next()) {
-			String customerName=rs.getString("customer_name");
-			String customerId=rs.getString("customer_id");
-			String email=rs.getString("email");
-			String phoneNumber=rs.getString("phone_number");
-			System.out.println(customerId +" "+ customerName+" "+email+ " "+phoneNumber );
+			String categoryName=rs.getString("category_name");
+			String categoryId=rs.getString("category_id");
+			System.out.println(categoryId +" "+ categoryName );
 		}
 	}
 
@@ -36,7 +33,7 @@ public class Customer {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con=DriverManager.getConnection(databaseUrl,username,password);
 		Statement st=con.createStatement();
-		String query="update customer set customer_name='Afrudeen' where customer_name= 'Afrudheen' ";
+		String query="update category set category_id=2 where category_id= 4 ";
 		st.executeUpdate(query);
 	}
 
@@ -45,7 +42,7 @@ public class Customer {
 		Class.forName("com.mysql.cj.jdbc.Driver");
 		Connection con=DriverManager.getConnection(databaseUrl,username,password);
 		Statement st=con.createStatement();
-		String query="delete from customer where categor_name='Anon'  ";
+		String query="delete from category where category_id= 3  ";
 		st.executeUpdate(query);
 	}
 	public static void main(String[] args) throws ClassNotFoundException,SQLException{
@@ -72,8 +69,10 @@ public class Customer {
 			System.out.println("Invalid Input");
 			
 		}
+		}
+						
+						
 	}
-}
-}
 
+}
 
